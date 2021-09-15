@@ -1,24 +1,16 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ImageBackground, Image } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LandingScreen from './components/auth/Landing';
+import HomeScreen from './components/HomeScreen';
 import Login from './components/auth/Login';
 import firebase from 'firebase/app'
 import Register from './components/auth/Register';
+import { auth } from './Firebase';
 const Stack = createStackNavigator();
 
-const firebaseConfig = {
-  apiKey: "AIzaSyA_K9trF0iXJ4HRKBrtpKCu6a0WE464fos",
-  authDomain: "mobile-6359c.firebaseapp.com",
-  projectId: "mobile-6359c",
-  storageBucket: "mobile-6359c.appspot.com",
-  messagingSenderId: "530505614502",
-  appId: "1:530505614502:web:d3da677bd98a0e96bde067"
-};
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+
 class App extends React.Component {
 
   constructor(props) {
@@ -29,7 +21,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
       if (!user) {
         this.setState({
           loggedIn: false,
@@ -47,13 +39,17 @@ class App extends React.Component {
 
   render() {
     const { loggedIn, loaded } = this.state;
+    const image = { uri: "https://images.unsplash.com/photo-1579547621244-c07e55dcb856?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1792&q=80" };
+
     if (!loaded) {
       return (
-        <View>
-          <Text>
-            Loading
-          </Text>
-        </View>
+        <View style={{ flex: 1 }}>
+          <ImageBackground source={{ uri: "https://images.unsplash.com/photo-1579547621244-c07e55dcb856?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1792&q=80" }} style={{ flex: 1 }} >
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: "center", padding: 1 }}>
+              <Image source={require("./assets/Logo.png")} style={{}} />
+            </View >
+          </ImageBackground>
+        </View >
       )
     }
     else if (!loggedIn) {
@@ -74,7 +70,11 @@ class App extends React.Component {
     }
     else {
       return (
-        <View style={{ flex: 1, marginTop: 500 }}><Text>loggedIn</Text></View>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Main"  >
+            <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+          </Stack.Navigator>
+        </NavigationContainer >
       )
     }
   }
