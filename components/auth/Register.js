@@ -24,14 +24,14 @@ export default function Register() {
                 style={{ flex: 1 }}  >
                 <View style={{ flex: 1, padding: 1 }}>
                     <TextInput placeholder="Enter Your Name" mode="outlined" label="Name"
-                        style={{ backgroundColor: "null", marginTop: 100 }}
+                        style={{ marginTop: 100 }}
                         onChangeText={(name) => { setName(name) }} />
                     <TextInput placeholder="Email" onChangeText={(email) => { setEmail(email) }}
                         placeholder="Enter Your Email" mode="outlined" label="Email"
-                        style={{ backgroundColor: "null" }} />
+                    />
                     <TextInput placeholder="Password" onChangeText={(password) => { setPassword(password) }}
                         placeholder="Enter Password" mode="outlined" label="Password"
-                        style={{ backgroundColor: "null" }} secureTextEntry={true} />
+                        secureTextEntry={true} />
                     <Button mode="contained"
                         onPress={() => { onSignUp() }}
                         style={{ backgroundColor: "#E71414", color: 'white', marginTop: 10 }} >SignUp</Button>

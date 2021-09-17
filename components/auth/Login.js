@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ImageBackground } from 'react-native';
 import { TextInput, Button } from 'react-native-paper'
-import { auth } from '../../Firebase';
+import firebase from 'firebase';
 export default class Login extends React.Component {
 
     constructor(props) {
@@ -17,7 +17,7 @@ export default class Login extends React.Component {
     }
     onLogin() {
         const { email, password } = this.state;
-        auth.signInWithEmailAndPassword(email, password).then((result) => { console.log(result) })
+        firebase.auth().signInWithEmailAndPassword(email, password).then((result) => { console.log(result) })
             .catch((error) => { console.log(error) })
     }
 
@@ -30,10 +30,10 @@ export default class Login extends React.Component {
                     <View style={{ flex: 1, padding: 1, alignContent: 'center' }}>
                         <TextInput placeholder="Email" onChangeText={(email) => { this.setState({ email }) }}
                             placeholder="Enter Your Email" mode="outlined" label="Email"
-                            style={{ backgroundColor: " ", marginTop: 200 }} />
+                            style={{ marginTop: 200 }} />
                         <TextInput placeholder="Password" onChangeText={(password) => { this.setState({ password }) }}
                             placeholder="Enter Password" mode="outlined" label="Password"
-                            style={{ backgroundColor: " " }} secureTextEntry={true} />
+                            secureTextEntry={true} />
                         <Button mode="contained"
                             onPress={() => this.onLogin()}
                             style={{ marginTop: 10 }}>Login</Button>

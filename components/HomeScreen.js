@@ -6,14 +6,13 @@ import Shop from './main/Shop';
 import Wishlist from './main/Wishlist'
 import Cart from './main/Cart';
 import Profile from './main/Profile'
-const EmpyuScreen = () => {
-    return (null)
-}
+import Profilescreen from './Profilescreen';
 
 const Tab = createMaterialBottomTabNavigator();
 const HomeScreen = () => {
     return (
-        <Tab.Navigator initialRouteName="Shop" labeled={false}>
+        <Tab.Navigator initialRouteName="Shop" activeColor="#f0edf6"
+            barStyle={{ backgroundColor: '#C6C8CC' }} labeled={true}>
             <Tab.Screen name="Shop" component={Shop}
 
                 options={{
@@ -43,7 +42,7 @@ const HomeScreen = () => {
                     ),
 
                 }} />
-            <Tab.Screen name="Profile" component={Profile}
+            <Tab.Screen name="Profile" component={Profilescreen}
                 options={{
                     tabBarIcon: ({
                         color, size
@@ -57,6 +56,6 @@ const HomeScreen = () => {
     );
 }
 
-const styles = StyleSheet.create({})
+
 
 export default HomeScreen;

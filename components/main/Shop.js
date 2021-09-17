@@ -1,11 +1,22 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import Mens from './products/Mens'
+import Womens from './products/Womens'
+import MobilePhones from './products/MobilePhones'
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
+const Tab = createMaterialTopTabNavigator();
 const Shop = () => {
     return (
-        <View>
-            <Text>Hello This is Home Screen</Text>
-        </View>
+        <Tab.Navigator screenOptions={{
+            headerShown: 'true'
+
+        }}>
+            <Tab.Screen name="Mens" component={Mens} />
+            <Tab.Screen name="Womens" component={Womens} />
+            <Tab.Screen name="MobileCover" component={MobilePhones} />
+        </Tab.Navigator>
     );
 }
 

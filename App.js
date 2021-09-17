@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, View, Text, ImageBackground, Image } from 'react-native';
+import { StyleSheet, View, Text, ImageBackground, Image, Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LandingScreen from './components/auth/Landing';
 import HomeScreen from './components/HomeScreen';
@@ -8,6 +8,8 @@ import Login from './components/auth/Login';
 import firebase from 'firebase/app'
 import Register from './components/auth/Register';
 import { auth } from './Firebase';
+
+
 const Stack = createStackNavigator();
 
 
@@ -72,7 +74,21 @@ class App extends React.Component {
       return (
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Main"  >
-            <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="ShoppingAdda" component={HomeScreen}
+              options={{
+
+                headerRight: () => (
+                  <Button
+
+                    onPress={() => alert('This app is made by piyush paradkar!')}
+                    title="Info"
+                    color="#fff"
+                    style={{ borderColor: 'black', backgroundColor: "black" }}
+                  />
+
+                ),
+
+              }} />
           </Stack.Navigator>
         </NavigationContainer >
       )
@@ -80,6 +96,5 @@ class App extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({})
 
 export default App;

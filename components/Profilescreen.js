@@ -1,21 +1,21 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import Account from './Profile/Account';
+import MyOrder from './Profile/MyOrder';
+import Address from './Profile/Address';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-
-const stack = createStackNavigator();
+const Tab = createMaterialTopTabNavigator();
 const Profilescreen = () => {
     return (
-        <NavigationContainer>
-
-
-
-        </NavigationContainer>
-
+        <Tab.Navigator >
+            <Tab.Screen name="Account" component={Account} />
+            <Tab.Screen name="Address" component={Address} />
+            <Tab.Screen name="My Orders" component={MyOrder} />
+        </Tab.Navigator>
     );
 }
 
-const styles = StyleSheet.create({})
 
 export default Profilescreen;
