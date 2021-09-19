@@ -1,11 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, View, Text, ImageBackground, Image, Button } from 'react-native';
+import { View, ImageBackground, Image, Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LandingScreen from './components/auth/Landing';
 import HomeScreen from './components/HomeScreen';
 import Login from './components/auth/Login';
-import firebase from 'firebase/app'
 import Register from './components/auth/Register';
 import { auth } from './Firebase';
 
@@ -76,7 +75,6 @@ class App extends React.Component {
           <Stack.Navigator initialRouteName="Main"  >
             <Stack.Screen name="ShoppingAdda" component={HomeScreen}
               options={{
-
                 headerRight: () => (
                   <Button
 
@@ -87,7 +85,6 @@ class App extends React.Component {
                   />
 
                 ),
-
               }} />
           </Stack.Navigator>
         </NavigationContainer >
