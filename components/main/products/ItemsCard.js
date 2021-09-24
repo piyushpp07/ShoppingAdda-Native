@@ -1,101 +1,137 @@
-import React from 'react';
-import { Text, View, Image } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Button } from 'react-native-paper'
-export default class ItemsCard extends React.Component {
-   render() {
-      return (
-         <TouchableOpacity
-            onPress={this.props.onPress}
-            style={{
-               marginTop: 30,
-               backgroundColor: "#FFF",
-               height: 300,
-               width: 200,
-               elevation: 2,
-               borderRadius: 10,
-               padding: 15,
-               marginRight: 30,
-               marginLeft: 2,
-               marginBottom: 5
-            }}
-         >
-            <Image
-               source={this.props.src}
-               style={{
-                  width: 170,
-                  height: 180,
-                  borderRadius: 10
-               }}
-            />
-            <View style={{
-               flexDirection: "row",
-               alignItems: "center",
-               marginVertical: 10
-            }}>
-               <Text style={{
-                  fontFamily: "Bold",
-                  color: "#4f4a4a",
-                  fontSize: 12
-               }}>
-                  {this.props.name}
-               </Text>
-               <View style={{
-                  height: 4,
-                  width: 4,
-                  borderRadius: 4,
-                  backgroundColor: "red",
-                  marginHorizontal: 4
-               }}>
+import React, { useContext, useEffect } from 'react';
+import { Text, View, Image, Alert } from 'react-native';
+import { Button, Dialog, Portal, Paragraph } from 'react-native-paper'
+import { db } from '../../../Firebase';
+import { StateContext } from '../../Context/StateProvider';
+export default function ItemsCard(props) {
 
-               </View>
-               <Text style={{
-                  color: "red",
-                  fontSize: 9,
-                  fontWeight: "bold",
-               }}>
-                  New
-               </Text>
+   const { cart, userdata, wish } = useContext(StateContext);
+   const [user, setUser] = userdata;
+   const [dataCart, setDataCart] = cart;
+   const [dataWishlist, setDataWishlist] = wish;
+   const [visible, setVisible] = React.useState(false);
+   const hideDialog = () => setVisible(false);
+
+   const addToCart = () => {
+      let q = dataCart.filter(a => a.productName === props.name)
+      if (q.length === 0) {
+         db.collection('users').doc(user).collection('cart').add({
+            price: props.price,
+            productName: props.name,
+            desc: props.name,
+            image: props.src
+         })
+      }
+      else {
+         Alert.alert("Already in Cart")
+      }
+
+   }
+
+   const addToWishlist = () => {
+      let q = dataWishlist.filter(a => a.productName === props.name)
+      if (q.length === 0) {
+         db.collection('users').doc(user).collection('wish').add({
+            price: props.price,
+            productName: props.name,
+            desc: props.desc,
+            image: props.src
+         })
+      }
+      else {
+         Alert.alert("Already in WishList")
+      }
+
+   }
+   return (
+      <View
+         style={{
+            marginTop: 20,
+            backgroundColor: "#FFF",
+            height: 300,
+            width: 200,
+            elevation: 5,
+            borderRadius: 10,
+            padding: 15,
+            marginRight: 30,
+            marginLeft: 1,
+            marginBottom: 5
+         }}
+      >
+         <Image
+            source={props.src}
+            style={{
+               width: 170,
+               height: 180,
+               borderRadius: 10
+            }}
+         />
+
+         <View style={{
+            flexDirection: "row",
+            alignItems: "center",
+            marginVertical: 10
+         }}>
+            <Text style={{
+               fontWeight: "bold",
+               color: "#4f4a4a",
+               fontSize: 12
+            }}>
+               {props.name}
+            </Text>
+            <View style={{
+               height: 4,
+               width: 4,
+               borderRadius: 4,
+               backgroundColor: "red",
+               marginHorizontal: 4
+            }}>
 
             </View>
             <Text style={{
+               color: "red",
                fontSize: 9,
-               color: "#4f4a4a",
-               fontFamily: "Regular"
+               fontWeight: "bold",
             }}>
-               {this.props.desc}
+               New
             </Text>
 
 
-            <View style={{
-               flexDirection: "row",
-               marginTop: 5,
-               alignItems: "center",
-               width: "100%"
-            }}>
-               <View style={{
-                  width: "80%"
-               }}>
-                  <Text style={{
-                     fontSize: 15,
-                     fontWeight: "bold",
-                  }}>{this.props.price} Rs</Text>
-               </View>
-               <View style={{
-                  width: "40%",
-                  flexDirection: 'row'
-               }}>
+         </View>
+         <Text style={{
+            fontSize: 9,
+            color: "#4f4a4a",
 
-                  <Button icon={({ size, color }) => (
-                     <Image
-                        source={{ uri: 'https://cdn.icon-icons.com/icons2/1369/PNG/512/-shopping-cart_90604.png' }}
-                        style={{ width: size, height: size, tintColor: color }}
-                     />
-                  )}> </ Button>
-               </View>
+         }}>
+            {props.desc}
+
+         </Text>
+
+
+         <View style={{
+            flexDirection: "row",
+            marginTop: 5,
+            alignItems: "center",
+            width: "60%"
+         }}>
+            <View style={{
+               width: "50%",
+
+            }}>
+               <Text style={{
+                  fontSize: 13,
+                  fontWeight: "bold",
+               }}>Price: {props.price} Rs</Text>
             </View>
 
-         </TouchableOpacity>
-      );
-   }
+            <Button icon="cart" onPress={() => { addToCart() }}></Button>
+            <Button icon="heart" onPress={() => { addToWishlist() }}></Button>
+
+
+         </View>
+
+
+      </View >
+   );
+
 }

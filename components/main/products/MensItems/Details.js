@@ -1,9 +1,9 @@
 import React from 'react'
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, Image, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import SwiperComponent from '../common/SwiperComponent'
 import Stars from 'react-native-stars';
-import { ScrollView } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 const styles = StyleSheet.create({
@@ -20,8 +20,9 @@ const styles = StyleSheet.create({
 });
 
 
-export default Details = () => {
-   const { price, desc, productName, image } = docs;
+export default function Detail() {
+
+
    return (
       <ScrollView>
          <View style={{
@@ -35,7 +36,7 @@ export default Details = () => {
                marginTop: 40
             }}>
                <TouchableOpacity
-                  onPress={() => this.props.navigation.goBack()}
+                  onPress={() => navigation.navigate.goBack()}
                   style={{
                      width: "50%"
                   }}
@@ -68,34 +69,6 @@ export default Details = () => {
                <View style={{
                   marginTop: 150
                }}>
-                  <View style={{
-                     backgroundColor: "#3f3a42",
-                     height: 25,
-                     width: 25,
-                     borderRadius: 5,
-                     borderWidth: 2,
-                     borderColor: "#FFF",
-                     elevation: 5
-                  }}></View>
-                  <View style={{
-                     backgroundColor: "#707070",
-                     height: 25,
-                     width: 25,
-                     borderRadius: 5,
-                     borderWidth: 2,
-                     borderColor: "#FFF",
-                     elevation: 5,
-                     marginVertical: 10
-                  }}></View>
-                  <View style={{
-                     backgroundColor: "#b3b4b9",
-                     height: 25,
-                     width: 25,
-                     borderRadius: 5,
-                     borderWidth: 2,
-                     borderColor: "#FFF",
-                     elevation: 5
-                  }}></View>
 
                </View>
                <SwiperComponent />
@@ -105,14 +78,7 @@ export default Details = () => {
                width: "100%",
                alignItems: "flex-end"
             }}>
-               <Image
-                  source={require('../images/save.png')}
-                  style={{
-                     marginTop: -45,
-                     width: 15,
-                     height: 20
-                  }}
-               />
+
             </View>
             <View style={{
                flexDirection: "row",
@@ -124,7 +90,7 @@ export default Details = () => {
                   width: "65%"
                }}>
                   <Text style={{
-                     fontFamily: "Bold",
+                     fontWeight: "bold",
                      fontSize: 18,
                      color: "#4f4a4a"
                   }}>Autobe best Chair</Text>
@@ -133,7 +99,7 @@ export default Details = () => {
                   width: "35%"
                }}>
                   <Text style={{
-                     fontFamily: "Bold",
+                     fontWeight: "bold",
                      fontSize: 9,
                      color: "#4f4a4a"
                   }}>Customers Rating</Text>
@@ -164,85 +130,19 @@ export default Details = () => {
                </View>
             </View>
             <Text style={{
-               fontFamily: "Bold",
+               fontWeight: "bold",
                fontSize: 16,
                color: "#b3aeae"
             }}>{this.props.price}</Text>
             <Text style={{
-               fontFamily: "Medium",
+               fontWeight: "medium",
                fontSize: 14,
                lineHeight: 20,
                color: "#b3aeae",
                marginTop: 20
             }}>
-               Full sleeves short dress with three attractive colors and available in various sizes.
+               {this.props.doc}
             </Text>
-
-
-            <ScrollView
-               style={{ marginTop: 40 }}
-               horizontal
-               showsHorizontalScrollIndicator={false}
-
-            >
-               <View style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: "#f5f6fb",
-                  height: 80,
-                  width: 80,
-                  borderRadius: 25,
-                  marginRight: 20
-               }}>
-                  <Image
-                     source={require('../images/12.png')}
-                     style={{ height: 80, width: 80 }}
-                  />
-               </View>
-
-               <View style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: "#f5f6fb",
-                  height: 80,
-                  width: 80,
-                  borderRadius: 25,
-                  marginRight: 20
-               }}>
-                  <Image
-                     source={require('../images/13.png')}
-                     style={{ height: 80, width: 80 }}
-                  />
-               </View>
-               <View style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: "#f5f6fb",
-                  height: 80,
-                  width: 80,
-                  borderRadius: 25,
-                  marginRight: 20
-               }}>
-                  <Image
-                     source={require('../images/14.png')}
-                     style={{ height: 80, width: 80 }}
-                  />
-               </View>
-               <View style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: "#f5f6fb",
-                  height: 80,
-                  width: 80,
-                  borderRadius: 25,
-                  marginRight: 20
-               }}>
-                  <Image
-                     source={require('../images/15.png')}
-                     style={{ height: 80, width: 80 }}
-                  />
-               </View>
-            </ScrollView>
 
 
 
@@ -271,7 +171,7 @@ export default Details = () => {
 
             </View>
          </View>
-      </ScrollView >
+      </ScrollView>
    );
 
 }

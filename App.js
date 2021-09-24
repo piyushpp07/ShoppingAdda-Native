@@ -7,7 +7,7 @@ import HomeScreen from './components/HomeScreen';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import { auth } from './Firebase';
-
+import { StateProvider } from './components/Context/StateProvider'
 
 const Stack = createStackNavigator();
 
@@ -71,23 +71,25 @@ class App extends React.Component {
     }
     else {
       return (
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="Main"  >
-            <Stack.Screen name="ShoppingAdda" component={HomeScreen}
-              options={{
-                headerRight: () => (
-                  <Button
+        <StateProvider>
+          <NavigationContainer>
+            <Stack.Navigator initialRouteName="Main"  >
+              <Stack.Screen name="ShoppingAdda" component={HomeScreen}
+                options={{
+                  headerRight: () => (
+                    <Button
 
-                    onPress={() => alert('This app is made by piyush paradkar!')}
-                    title="Info"
-                    color="#fff"
-                    style={{ borderColor: 'black', backgroundColor: "black" }}
-                  />
+                      onPress={() => alert('This app is made by piyush paradkar!')}
+                      title="Info"
+                      color="#fff"
+                      style={{ borderColor: 'black', backgroundColor: "black" }}
+                    />
 
-                ),
-              }} />
-          </Stack.Navigator>
-        </NavigationContainer >
+                  ),
+                }} />
+            </Stack.Navigator>
+          </NavigationContainer >
+        </StateProvider>
       )
     }
   }

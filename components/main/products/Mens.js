@@ -1,5 +1,4 @@
 import { createStackNavigator } from '@react-navigation/stack';
-
 import MensProducts from './MensItems/MensProducts'
 import Details from './MensItems/Details'
 import React from 'react';

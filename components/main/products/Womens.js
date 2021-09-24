@@ -1,14 +1,21 @@
+import { createStackNavigator } from '@react-navigation/stack';
+import WomensProducts from './WomensItems/WomensProducts'
+import Details from './WomensItems/Details'
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-
+const Stack = createStackNavigator();
 const Womens = () => {
     return (
-        <View>
-            <Text>This is womens Component</Text>
-        </View>
+
+        <Stack.Navigator initialRouteName="WomensProducts"  >
+            <Stack.Screen name="Womens" component={WomensProducts} options={{
+                headerShown: false
+            }} />
+            <Stack.Screen name="Details" component={Details} options={{
+                headerShown: false
+            }} />
+        </Stack.Navigator>
+
+
     );
 }
-
-const styles = StyleSheet.create({})
-
 export default Womens;
