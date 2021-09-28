@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import Mens from './products/Mens'
 import Womens from './products/Womens'
-import MobilePhones from './products/MobilePhones'
+
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 
@@ -16,7 +16,6 @@ const Shop = () => {
         }}>
             <Tab.Screen name="Mens" component={Mens} />
             <Tab.Screen name="Womens" component={Womens} />
-            <Tab.Screen name="MobileCover" component={MobilePhones} />
         </Tab.Navigator>
     );
 }

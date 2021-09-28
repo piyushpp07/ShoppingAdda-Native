@@ -10,9 +10,6 @@ export default function Profile({ navigation }) {
         const displayName = user.displayName;
         setName(displayName);
     }, [])
-    const getUserName = () => {
-
-    }
     const Signout = () => {
         firebase.auth().signOut();
         navigation.navigate('/Login');

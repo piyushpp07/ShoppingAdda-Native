@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { StyleSheet, Button, Text, View, TouchableOpacity, ScrollView, Image, ActivityIndicator, TextInput, Alert } from 'react-native';
+import { StyleSheet, Button, Text, View, TouchableOpacity, ScrollView, Image, ActivityIndicator, TextInput, Alert, ToastAndroid } from 'react-native';
 import { MaterialIcons, AntDesign, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { StateContext } from '../Context/StateProvider';
 import { db } from '../../Firebase';
@@ -15,16 +15,11 @@ export default function Cart() {
             .doc(ide)
             .collection('cart')
             .doc(id)
-            .delete()
+            .delete().then(() => { ToastAndroid.show("Removed Item"); })
     }
 
-    const quantityHandler = () => {
 
-    }
 
-    const subtotalPrice = () => {
-
-    }
 
 
     return (
@@ -52,15 +47,7 @@ export default function Cart() {
                                 <Text numberOfLines={1} style={{ fontSize: 15 }}>{item.productName}</Text>
                                 <Text numberOfLines={1} style={{ color: '#8f8f8f' }}>{'Description : ' + item.desc}</Text>
                                 <Text numberOfLines={1} style={{ color: '#333333', marginBottom: 10 }}>₹{item.price}</Text>
-                                <View style={{ flexDirection: 'row' }}>
-                                    <TouchableOpacity onPress={() => quantityHandler('less', i)} style={{ borderWidth: 1, borderColor: '#cccccc' }}>
-                                        <MaterialIcons name="remove" size={22} color="#cccccc" />
-                                    </TouchableOpacity>
-                                    <Text style={{ borderTopWidth: 1, borderBottomWidth: 1, borderColor: '#cccccc', paddingHorizontal: 7, paddingTop: 3, color: '#bbbbbb', fontSize: 13 }}>{item.qty}</Text>
-                                    <TouchableOpacity onPress={() => quantityHandler('more', i)} style={{ borderWidth: 1, borderColor: '#cccccc' }}>
-                                        <MaterialIcons name="add" size={22} color="#cccccc" />
-                                    </TouchableOpacity>
-                                </View>
+
                             </View>
 
                         </View>

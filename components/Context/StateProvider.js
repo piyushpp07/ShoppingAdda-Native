@@ -10,9 +10,12 @@ export const StateProvider = (props) => {
    const [wishSave, setWishSave] = useState()
    const [dataMens, setDataMens] = useState([])
    const [dataWomens, setDataWomens] = useState([])
+   const [dataWomens2, setDataWomens2] = useState([])
    const [dataMobile, setDataMobile] = useState([])
    const [dataCart, setDataCart] = useState([])
    const [dataWishlist, setDataWishlist] = useState([])
+   const [second, setSecond] = useState([]);
+   const [first, setFirst] = useState([]);
 
 
    useEffect(() => {
@@ -34,11 +37,18 @@ export const StateProvider = (props) => {
 
       //Womens Data Fetching
       const getWomenDataFromFirebase = [];
-      db.collection('collection').doc("women").collection("WomenAttire").onSnapshot((querySnapshot) => {
+      db.collection('collection').doc("women").collection("WomenAttire").orderBy('price').limit(3).onSnapshot((querySnapshot) => {
          querySnapshot.forEach((doc) => {
             getWomenDataFromFirebase.push({ ...doc.data(), key: doc.id });
          });
          setDataWomens(getWomenDataFromFirebase);
+      });
+      const getWomenData2FromFirebase = [];
+      db.collection('collection').doc("women").collection("WomenAttire").orderBy('price', 'desc').limit(4).onSnapshot((querySnapshot) => {
+         querySnapshot.forEach((doc) => {
+            getWomenData2FromFirebase.push({ ...doc.data(), key: doc.id });
+         });
+         setDataWomens2(getWomenData2FromFirebase);
       });
 
       //Mobile Data Fetching
@@ -90,6 +100,24 @@ export const StateProvider = (props) => {
             setWishSave(save)
             setWishTotal(total)
          })
+
+         //Mens Second Data
+         const getMobileDataFromFirebase = [];
+         db.collection('collection').doc("mens").collection("MensAttire").orderBy('price').limit(3).onSnapshot((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+               getMobileDataFromFirebase.push({ ...doc.data(), key: doc.id });
+            });
+            setSecond(getMobileDataFromFirebase);
+         });
+
+         // Mens First Data
+         const getFirstDataFromFirebase = [];
+         db.collection('collection').doc("mens").collection("MensAttire").orderBy('price', 'desc').limit(3).onSnapshot((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+               getFirstDataFromFirebase.push({ ...doc.data(), key: doc.id });
+            });
+            setFirst(getFirstDataFromFirebase);
+         });
       }
 
 
@@ -111,6 +139,9 @@ export const StateProvider = (props) => {
             carttotal: [cartTotal, setcartTotal],
             wishsave: [wishSave, setWishSave],
             wishtotal: [wishTotal, setWishTotal],
+            seco: [second, setSecond],
+            firs: [first, setFirst],
+            wo2: [dataWomens2, setDataWomens2]
          }
          }
       >

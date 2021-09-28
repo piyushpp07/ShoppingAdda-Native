@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Text, View, Image, Alert } from 'react-native';
+import { Text, View, Image, Alert, ToastAndroid } from 'react-native';
 import { Button, Dialog, Portal, Paragraph } from 'react-native-paper'
 import { db } from '../../../Firebase';
 import { StateContext } from '../../Context/StateProvider';
@@ -23,7 +23,7 @@ export default function ItemsCard(props) {
          })
       }
       else {
-         Alert.alert("Already in Cart")
+         ToastAndroid.show("Already In Cart", ToastAndroid.SHORT)
       }
 
    }
@@ -39,7 +39,7 @@ export default function ItemsCard(props) {
          })
       }
       else {
-         Alert.alert("Already in WishList")
+         ToastAndroid.show("Already In WishList", ToastAndroid.SHORT)
       }
 
    }
@@ -55,7 +55,8 @@ export default function ItemsCard(props) {
             padding: 15,
             marginRight: 30,
             marginLeft: 1,
-            marginBottom: 5
+            marginBottom: 5,
+
          }}
       >
          <Image
