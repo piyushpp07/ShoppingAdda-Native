@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { View, Text } from 'react-native'
 import firebase from 'firebase'
 import { Button } from 'react-native-paper';
-
-export default function Profile({ navigation }) {
+import { useNavigation } from '@react-navigation/native';
+export default function Profile() {
     const [d, setName] = useState("");
+    const navigation = useNavigation();
     useEffect(() => {
         const user = firebase.auth().currentUser;
         const displayName = user.displayName;
@@ -20,7 +21,7 @@ export default function Profile({ navigation }) {
     return (
         <View style={{ marginTop: 30, justifyContent: 'center', alignItems: 'center' }}>
             <Text>Welcome {d}</Text>
-            <Button title="logout" style={{ color: 'green', width: "50%" }} onClick={() => { Signout() }} >Signout</Button>
+            <Button title="logout" style={{ color: 'green', width: "50%" }} onPress={() => { Signout() }} >Signout</Button>
         </View>
     )
 }

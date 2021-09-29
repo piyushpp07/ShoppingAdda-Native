@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ImageBackground } from 'react-native';
+import { View, ImageBackground,Text,Image } from 'react-native';
 import { TextInput, Button } from 'react-native-paper'
 import firebase from 'firebase';
 export default class Login extends React.Component {
@@ -23,14 +23,20 @@ export default class Login extends React.Component {
 
     render() {
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignContent: "center", backgroundColor: "#B8B5FF" }}>
-                <ImageBackground style={{ flex: 1 }}
-                    source={{ uri: "https://images.unsplash.com/photo-1565103382118-c65707fc2a9c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1868&q=80" }}>
-
-                    <View style={{ flex: 1, padding: 1, alignContent: 'center' }}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: "center", backgroundColor: "#EEEEEE" }}>
+                    
+   
+        <View style={{  backgroundColor: "#FFF", height: 400,width: '90%',
+            elevation: 10, borderRadius: 10, padding: 13
+            }}>
+                 <View style={{ flex: 1,
+                    aspectRatio: 1, resizeMode: 'contain',padding:2 }}>
+                    <Image source={require("../../assets/Logo2.png")} style={{}} />
+                </View >
+                 <View>
                         <TextInput placeholder="Email" onChangeText={(email) => { this.setState({ email }) }}
                             placeholder="Enter Your Email" mode="outlined" label="Email"
-                            style={{ marginTop: 200 }} />
+                            style={{ marginTop: 30}} />
                         <TextInput placeholder="Password" onChangeText={(password) => { this.setState({ password }) }}
                             placeholder="Enter Password" mode="outlined" label="Password"
                             secureTextEntry={true} />
@@ -38,7 +44,7 @@ export default class Login extends React.Component {
                             onPress={() => this.onLogin()}
                             style={{ marginTop: 10 }}>Login</Button>
                     </View>
-                </ImageBackground>
+       </View>
             </View >
         );
     }

@@ -3,8 +3,11 @@ import { StyleSheet, Button, Text, View, TouchableOpacity, ScrollView, Image, Ac
 import { MaterialIcons, AntDesign, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { StateContext } from '../Context/StateProvider';
 import { db } from '../../Firebase';
+import { useNavigation } from '@react-navigation/native';
+
 export default function Cart() {
 
+    const navigation = useNavigation();
     const { cart, carttotal, userdata } = useContext(StateContext);
     const [dataCart, setDataCart] = cart;
     const [cartTotal, setcartTotal] = carttotal;
@@ -79,7 +82,7 @@ export default function Cart() {
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end', height: 32, paddingRight: 20, alignItems: 'center' }}>
                     <TouchableOpacity style={[styles.centerElement, { backgroundColor: '#0faf9a', width: 100, height: 25, borderRadius: 5 }]} onPress={() => console.log('test')}>
-                        <Text style={{ color: '#ffffff' }}>Checkout</Text>
+                        <Text style={{ color: '#ffffff' }} onPress={()=>{navigation.navigate('Pay')}}>Checkout</Text>
                     </TouchableOpacity>
                 </View>
             </View>

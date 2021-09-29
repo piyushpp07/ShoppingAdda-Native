@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "type": "module",
+  "author": "piyush",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "stripe": "^8.177.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}

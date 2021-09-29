@@ -4,15 +4,15 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import Shop from './main/Shop';
 import Wishlist from './main/Wishlist'
-import Cart from './main/Cart';
+import Payment from './main/Payment'
 import Profile from './main/Profile'
 import Profilescreen from './Profilescreen';
 
 const Tab = createMaterialBottomTabNavigator();
 const HomeScreen = () => {
     return (
-        <Tab.Navigator initialRouteName="Shop" activeColor="#f0edf6"
-            barStyle={{ backgroundColor: '#C6C8CC' }} labeled={true}>
+        <Tab.Navigator initialRouteName="Shop" activeColor="#334257" inactiveColor="#362222"
+            barStyle={{ backgroundColor: '#F9F9F9' }} labeled={true}>
             <Tab.Screen name="Shop" component={Shop}
 
                 options={{
@@ -33,7 +33,7 @@ const HomeScreen = () => {
                     ),
 
                 }} />
-            <Tab.Screen name="Cart" component={Cart}
+            <Tab.Screen name="Cart" component={Payment}
                 options={{
                     tabBarIcon: ({
                         color, size
