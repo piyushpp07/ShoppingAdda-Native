@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ImageBackground,Text,Image } from 'react-native';
+import { View, ImageBackground,Text,Image ,ToastAndroid} from 'react-native';
 import { TextInput, Button } from 'react-native-paper'
 import firebase from 'firebase';
 export default class Login extends React.Component {
@@ -17,8 +17,8 @@ export default class Login extends React.Component {
     }
     onLogin() {
         const { email, password } = this.state;
-        firebase.auth().signInWithEmailAndPassword(email, password).then((result) => { console.log(result) })
-            .catch((error) => { console.log(error) })
+        firebase.auth().signInWithEmailAndPassword(email, password).then((result) => {console.warn(result) })
+            .catch((error) => { ToastAndroid.show(error) })
     }
 
     render() {
