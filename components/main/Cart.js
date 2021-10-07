@@ -18,13 +18,8 @@ export default function Cart() {
             .doc(ide)
             .collection('cart')
             .doc(id)
-            .delete().then(() => { ToastAndroid.show("Removed Item"); })
+            .delete().then(() => { ToastAndroid.show("Item Removed From Cart", ToastAndroid.SHORT) })
     }
-
-
-
-
-
     return (
         <View style={{ flex: 1, backgroundColor: '#f6f6f6' }}>
             <View style={{ flexDirection: 'row', backgroundColor: '#fff', marginBottom: 10 }}>
@@ -82,7 +77,7 @@ export default function Cart() {
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end', height: 32, paddingRight: 20, alignItems: 'center' }}>
                     <TouchableOpacity style={[styles.centerElement, { backgroundColor: '#0faf9a', width: 100, height: 25, borderRadius: 5 }]} onPress={() => console.log('test')}>
-                        <Text style={{ color: '#ffffff' }} onPress={()=>{navigation.navigate('Pay')}}>Checkout</Text>
+                        <Text style={{ color: '#ffffff' }} onPress={() => { navigation.navigate('Pay') }}>Checkout</Text>
                     </TouchableOpacity>
                 </View>
             </View>

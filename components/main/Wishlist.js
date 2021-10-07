@@ -15,7 +15,7 @@ const Wishlist = () => {
             .doc(ide)
             .collection('wish')
             .doc(id)
-            .delete().then(() => { ToastAndroid.show("Removed Item"); })
+            .delete().then(() => { ToastAndroid.show("Removed From Wishlist", ToastAndroid.SHORT) })
     }
     const MovetoCart = (doc) => {
         let q = dataCart.filter(a => a.productName === doc.productName)
