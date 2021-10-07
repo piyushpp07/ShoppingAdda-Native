@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ImageBackground, View ,Image} from 'react-native';
+import { ImageBackground, View, Image, ToastAndroid } from 'react-native';
 import { TextInput, Button } from 'react-native-paper'
 import firebase from 'firebase';
 export default function Register() {
@@ -15,17 +15,20 @@ export default function Register() {
             result.user.updateProfile({ displayName: name });
             console.log(result)
         })
-            .catch((error) => { console.log(error) })
+            .catch((error) => { ToastAndroid.show("Try With Right Format", ToastAndroid.SHORT) })
     }
 
     return (
-        <View style={{ flex: 1 ,justifyContent: 'center', alignItems: "center", backgroundColor: "#EEEEEE" }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: "center", backgroundColor: "#EEEEEE" }}>
 
-        <View style={{  backgroundColor: "#FFF", height:550,width: '90%',
-            elevation: 10, borderRadius: 10, padding: 12,resizeMode:'contain'
+            <View style={{
+                backgroundColor: "#FFF", height: 550, width: '90%',
+                elevation: 10, borderRadius: 10, padding: 12, resizeMode: 'contain'
             }}>
-                 <View style={{ flex: 1,
-                    aspectRatio: 1, resizeMode: 'contain' }}>
+                <View style={{
+                    flex: 1,
+                    aspectRatio: 1, resizeMode: 'contain'
+                }}>
                     <Image source={require("../../assets/Logo2.png")} style={{}} />
                 </View >
                 <View style={{ flex: 1, padding: 1 }}>
@@ -43,8 +46,8 @@ export default function Register() {
                         style={{ backgroundColor: "#E71414", color: 'white', marginTop: 10 }} >SignUp</Button>
 
                 </View>
-                </View>
-     
+            </View>
+
         </View >
 
     );
