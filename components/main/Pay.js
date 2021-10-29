@@ -11,7 +11,7 @@ const Pay = props => {
   const { confirmPayment, loading } = useConfirmPayment();
 
   const fetchPaymentIntentClientSecret = async () => {
-    const response = await fetch(`${API_URL}/create-payment-intent`, {
+    const response = await fetch(`${API_URL}/payment`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -55,28 +55,28 @@ const Pay = props => {
   };
 
   return (
-      <StripeProvider publishableKey="pk_test_51JObFKSAm54TGSWjZQQVnpytQbBKaz7MqR7ewLtoeqZSsO9SZUl7n3ZZm3zEYV3sYmQnZaVbzZCttT3in6KJTxKS00lJalhL2a">
-    <View style={styles.container}>
-      <TextInput
-        autoCapitalize="none"
-        placeholder="E-mail"
-        keyboardType="email-address"
-        onChange={value => setEmail(value.nativeEvent.text)}
-        style={styles.input}
-      />
-      <CardField
-        postalCodeEnabled={true}
-        placeholder={{
-          number: "4242 4242 4242 4242",
-        }}
-        cardStyle={styles.card}
-        style={styles.cardContainer}
-        onCardChange={cardDetails => {
-          setCardDetails(cardDetails);
-        }}
-      />
-      <Button onPress={handlePayPress} title="Pay" disabled={loading} />
-    </View>
+    <StripeProvider publishableKey="pk_test_51JObFKSAm54TGSWjZQQVnpytQbBKaz7MqR7ewLtoeqZSsO9SZUl7n3ZZm3zEYV3sYmQnZaVbzZCttT3in6KJTxKS00lJalhL2a">
+      <View style={styles.container}>
+        <TextInput
+          autoCapitalize="none"
+          placeholder="E-mail"
+          keyboardType="email-address"
+          onChange={value => setEmail(value.nativeEvent.text)}
+          style={styles.input}
+        />
+        <CardField
+          postalCodeEnabled={true}
+          placeholder={{
+            number: "4242 4242 4242 4242",
+          }}
+          cardStyle={styles.card}
+          style={styles.cardContainer}
+          onCardChange={cardDetails => {
+            setCardDetails(cardDetails);
+          }}
+        />
+        <Button onPress={handlePayPress} title="Pay" disabled={loading} />
+      </View>
     </StripeProvider>
   );
 };

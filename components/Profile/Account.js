@@ -16,8 +16,6 @@ export default function Profile() {
         navigation.navigate('/Login');
         console.log("Pressed")
     }
-
-
     return (
         <View style={{ marginTop: 30, justifyContent: 'center', alignItems: 'center' }}>
             <Text>Welcome {d}</Text>

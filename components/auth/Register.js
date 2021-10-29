@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ImageBackground, View, Image, ToastAndroid } from 'react-native';
 import { TextInput, Button } from 'react-native-paper'
 import firebase from 'firebase';
+import { KeyboardAvoidingView } from 'react-native';
 export default function Register() {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
@@ -27,24 +28,26 @@ export default function Register() {
             }}>
                 <View style={{
                     flex: 1,
-                    aspectRatio: 1, resizeMode: 'contain'
+                    aspectRatio: 1, resizeMode: 'contain', left: 50
                 }}>
                     <Image source={require("../../assets/Logo2.png")} style={{}} />
                 </View >
                 <View style={{ flex: 1, padding: 1 }}>
-                    <TextInput placeholder="Enter Your Name" mode="outlined" label="Name"
-                        style={{ marginTop: 20 }}
-                        onChangeText={(name) => { setName(name) }} />
-                    <TextInput placeholder="Email" onChangeText={(email) => { setEmail(email) }}
-                        placeholder="Enter Your Email" mode="outlined" label="Email"
-                    />
-                    <TextInput placeholder="Password" onChangeText={(password) => { setPassword(password) }}
-                        placeholder="Enter Password" mode="outlined" label="Password"
-                        secureTextEntry={true} />
-                    <Button mode="contained"
-                        onPress={() => { onSignUp() }}
-                        style={{ backgroundColor: "#E71414", color: 'white', marginTop: 10 }} >SignUp</Button>
+                    <KeyboardAvoidingView>
+                        <TextInput placeholder="Enter Your Name" mode="outlined" label="Name"
+                            style={{ marginTop: 20 }}
+                            onChangeText={(name) => { setName(name) }} />
+                        <TextInput placeholder="Email" onChangeText={(email) => { setEmail(email) }}
+                            placeholder="Enter Your Email" mode="outlined" label="Email"
+                        />
+                        <TextInput placeholder="Password" onChangeText={(password) => { setPassword(password) }}
+                            placeholder="Enter Password" mode="outlined" label="Password"
+                            secureTextEntry={true} />
+                        <Button mode="contained"
+                            onPress={() => { onSignUp() }}
+                            style={{ backgroundColor: "#E71414", color: 'white', marginTop: 10 }} >SignUp</Button>
 
+                    </KeyboardAvoidingView>
                 </View>
             </View>
 

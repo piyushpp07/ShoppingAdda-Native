@@ -10,8 +10,10 @@
   "author": "piyush",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "stripe": "^8.177.0"
+    "stripe": "^8.177.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.13"

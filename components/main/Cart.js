@@ -30,9 +30,6 @@ export default function Cart() {
                     <Text style={{ fontSize: 18, color: '#000' }}>Shopping Cart</Text>
                 </View>
             </View>
-
-
-
             <ScrollView>
                 {dataCart && dataCart.map((item, i) => (
                     <View key={i} style={{ flexDirection: 'row', backgroundColor: '#fff', marginBottom: 2, height: 120 }}>

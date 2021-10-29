@@ -7,11 +7,11 @@ import Pay from './Pay'
 const Stack = createStackNavigator();
 const Payment = () => {
    return (
-      <Stack.Navigator initialRouteName="Cart"   screenOptions={{ headerShown: false }}>
-     
+      <Stack.Navigator initialRouteName="Cart" screenOptions={{ headerShown: false }}>
+
          <Stack.Screen name="Cart" component={Cart} />
          <Stack.Screen name="Pay" component={Pay} />
-   
+         <Stack.Screen name="Address" component={Address} />
       </Stack.Navigator>
    );
 }
