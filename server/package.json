@@ -1,21 +1,20 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "THis is backend for payment",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "type": "module",
-  "author": "piyush",
+  
+  "author": "",
   "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "stripe": "^8.177.0",
-    "uuid": "^8.3.2"
-  },
   "devDependencies": {
-    "nodemon": "^2.0.13"
+    "express": "^4.17.1",
+    "nodemon": "^2.0.14",
+    "stripe": "^8.184.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5"
   }
 }
