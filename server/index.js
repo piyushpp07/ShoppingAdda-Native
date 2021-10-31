@@ -16,13 +16,15 @@ app.post('/payment', async (req, res) => {
    const {
       paymentMethod,
       currency,
-      amount
+      amount,
+      desc
    } = req.body
    try {
       const paymentIntent = await stripe.paymentIntents.create({
-         currency: currency,
+         currency: "inr",
          payment_method_types: [paymentMethod],
-         amount: amount
+         amount: amount,
+         description: `Purchased Products worth ${amount}`
       })
       res.json({ client_secret: paymentIntent.client_secret })
    }
