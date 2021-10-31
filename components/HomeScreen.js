@@ -11,8 +11,8 @@ import Profilescreen from './Profilescreen';
 const Tab = createMaterialBottomTabNavigator();
 const HomeScreen = () => {
     return (
-        <Tab.Navigator initialRouteName="Shop" activeColor="#334257" inactiveColor="#362222"
-            barStyle={{ backgroundColor: '#F9F9F9' }} labeled={true}>
+        <Tab.Navigator initialRouteName="Shop" activeColor="black" inactiveColor="green"
+            barStyle={{ backgroundColor: '#273469' }} labeled={true}>
             <Tab.Screen name="Shop" component={Shop}
 
                 options={{

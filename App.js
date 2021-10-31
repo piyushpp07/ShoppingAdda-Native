@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { View, ImageBackground, Image, Button ,Alert} from 'react-native';
+import { View, ImageBackground, Image, Button, Alert } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LandingScreen from './components/auth/Landing';
 import HomeScreen from './components/HomeScreen';
@@ -13,15 +13,21 @@ import { Ionicons } from '@expo/vector-icons';
 const Stack = createStackNavigator();
 import { LogBox } from 'react-native';
 import _ from 'lodash';
+import Chat from './components/Chat';
+import { Entypo } from '@expo/vector-icons';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 LogBox.ignoreLogs(['Warning:...']); // ignore specific logs
 LogBox.ignoreAllLogs(); // ignore all logs
 const _console = _.clone(console);
+
 console.warn = message => {
-if (message.indexOf('Setting a timer') <= -1) {
-   _console.warn(message);
-   }
+  if (message.indexOf('Setting a timer') <= -1) {
+    _console.warn(message);
+  }
 };
+
+
 
 class App extends React.Component {
 
@@ -71,9 +77,9 @@ class App extends React.Component {
             headerMode: 'screen',
             headerTintColor: 'white',
             headerStyle: { backgroundColor: '#B5DEFF' },
-            headerBlurEffect:"dark",
-            animation:"flip",
-            presentation:"fullScreenModal"
+            headerBlurEffect: "dark",
+            animation: "flip",
+            presentation: "fullScreenModal"
           }} >
             <Stack.Screen name="Landing" component={LandingScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Login" component={Login} />
@@ -89,15 +95,52 @@ class App extends React.Component {
           <NavigationContainer  >
             <Stack.Navigator initialRouteName="Main">
               <Stack.Screen name="ShoppingAdda" component={HomeScreen}
-                options={{
+                options={({ navigation }) => ({
+                  title: 'Shopping Adda',
+                  headerStyle: {
+                    backgroundColor: '#273469',
+                  },
+                  headerTintColor: '#EBF2FA',
                   headerRight: () => (
-                 <AntDesign name="infocirlce" size={23} color="black" onPress={()=>{Alert.alert("Hello!","App is Bulid By Piyush Paradkar")}}/>
-                 
-                  ),headerMode:'screen',headerStyle: {
-  height: 80, // Specify the height of your custom header
-}
-                }} />
+
+                    <Entypo
+                      onPress={() => navigation.navigate('Chat')}
+                      name="chat"
+                      type="material"
+                      size={24}
+                      style={{ right: 10 }}
+
+                    />
+
+
+                  ),
+
+                  headerLeft: () => (
+                    <Ionicons
+
+                      onPress={() => Alert.alert("Under Construction")}
+                      name="ios-menu"
+                      type="material"
+                      size={28}
+                      style={{ left: 7, top: 1 }}
+
+                    />
+                  ),
+
+
+                  headerMode: 'screen'
+                })}
+              />
+              <Stack.Screen name="Chat" component={Chat} options={{
+                title: 'Chat Bot',
+                headerStyle: {
+                  backgroundColor: '#273469',
+                },
+              }}
+              />
+
             </Stack.Navigator>
+
           </NavigationContainer >
         </StateProvider>
       )
