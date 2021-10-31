@@ -24,7 +24,7 @@ app.post('/payment', async (req, res) => {
          payment_method_types: [paymentMethod],
          amount: amount
       })
-      res.json({ client_secret: paymentIntents.client_secret })
+      res.json({ client_secret: paymentIntent.client_secret })
    }
    catch (error) {
       console.log(error.message)

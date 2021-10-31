@@ -28,7 +28,7 @@ const Pay = (props) => {
 
   const initializePayment = async () => {
     try {
-      const response = await fetch('http://localhost:3000/payment', {
+      const response = await fetch('http://192.168.29.241:3000/payment', {
         method: 'POST',
         headers: {
           "Content-type": "application/json"
@@ -77,21 +77,11 @@ const Pay = (props) => {
 
 
 
-  const fetchPaymentIntentClientSecret = async () => {
-    const response = await axios.post(
-      "http://localhost:5000/create-payment-intent", { cartTotal }
-    );
-    const { clientSecret, error } = await response.json();
-    return { clientSecret, error };
-  };
-
-
-
   return (
     <StripeProvider publishableKey="pk_test_51JObFKSAm54TGSWjZQQVnpytQbBKaz7MqR7ewLtoeqZSsO9SZUl7n3ZZm3zEYV3sYmQnZaVbzZCttT3in6KJTxKS00lJalhL2a">
       <View style={styles.container}>
         <Text>Checkout</Text>
-        <Button title="Pay" onPress={openPaymentSheet} />
+        <Button title="Pay" onPress={() => { openPaymentSheet(); console.log("Hello") }} />
       </View>
     </StripeProvider>
   );
