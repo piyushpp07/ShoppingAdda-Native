@@ -28,11 +28,11 @@ export default class Login extends React.Component {
 
                 <View style={{
                     backgroundColor: "#FFF", height: 400, width: '90%',
-                    elevation: 10, borderRadius: 10, padding: 13
+                    elevation: 10, borderRadius: 10, padding: 13, right: 10
                 }}>
                     <View style={{
                         flex: 1,
-                        aspectRatio: 1, resizeMode: 'contain', padding: 2, alignItems: 'center', left: 80, bottom: 20
+                        aspectRatio: 1, resizeMode: 'contain', padding: 2, alignItems: 'center', left: 80, bottom: 380
                     }}>
                         <Image source={require("../../assets/Logo2.png")} style={{}} />
                     </View >

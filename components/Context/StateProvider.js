@@ -14,9 +14,10 @@ export const StateProvider = (props) => {
    const [dataMobile, setDataMobile] = useState([])
    const [dataCart, setDataCart] = useState([])
    const [dataWishlist, setDataWishlist] = useState([])
+   const [dataOrder, setDataOrder] = useState([])
    const [second, setSecond] = useState([]);
    const [first, setFirst] = useState([]);
-
+   const [orderTotal, setOrderTotal] = useState()
 
    useEffect(() => {
       auth.onAuthStateChanged(usr => {
@@ -79,7 +80,13 @@ export const StateProvider = (props) => {
             });
             setDataWishlist(getWishDataFromFirebase);
          });
-
+         db.collection('users').doc(user).collection("order").onSnapshot((querySnapshot) => {
+            const getOrderDataFromFirebase = [];
+            querySnapshot.forEach((doc) => {
+               getOrderDataFromFirebase.push({ ...doc.data(), key: doc.id });
+            });
+            setDataOrder(getOrderDataFromFirebase);
+         });
          db.collection('users').doc(user).collection('cart').onSnapshot((a) => {
             let total = 0;
             let save = 0;
@@ -89,6 +96,13 @@ export const StateProvider = (props) => {
             })
             setcartSave(save)
             setcartTotal(total)
+         })
+         db.collection('users').doc(user).collection('order').onSnapshot((a) => {
+            let total = 0;
+            a.forEach((item) => {
+               total = total + Number(item.data().price)
+            })
+            setOrderTotal(total)
          })
          db.collection('users').doc(user).collection('wish').onSnapshot((a) => {
             let total = 0;
@@ -128,7 +142,6 @@ export const StateProvider = (props) => {
    return (
       <StateContext.Provider
          value={{
-
             mens: [dataMens, setDataMens],
             womens: [dataWomens, setDataWomens],
             userdata: [user, setUser],
@@ -141,7 +154,9 @@ export const StateProvider = (props) => {
             wishtotal: [wishTotal, setWishTotal],
             seco: [second, setSecond],
             firs: [first, setFirst],
-            wo2: [dataWomens2, setDataWomens2]
+            wo2: [dataWomens2, setDataWomens2],
+            dataO: [dataOrder, setDataOrder],
+            ot: [orderTotal, setOrderTotal]
          }
          }
       >

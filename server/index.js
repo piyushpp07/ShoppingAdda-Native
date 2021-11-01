@@ -19,6 +19,7 @@ app.post('/payment', async (req, res) => {
       amount,
       desc
    } = req.body
+   console.log(amount)
    try {
       const paymentIntent = await stripe.paymentIntents.create({
          currency: "inr",

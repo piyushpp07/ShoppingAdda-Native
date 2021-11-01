@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { ImageBackground, View, Image, ToastAndroid } from 'react-native';
 import { TextInput, Button } from 'react-native-paper'
@@ -15,8 +16,7 @@ export default function Register() {
             })
             result.user.updateProfile({ displayName: name });
             console.log(result)
-        })
-            .catch((error) => { ToastAndroid.show("Try With Right Format", ToastAndroid.SHORT) })
+        }).catch((error) => { ToastAndroid.show("Try With Right Format", ToastAndroid.SHORT) })
     }
 
     return (
@@ -28,7 +28,7 @@ export default function Register() {
             }}>
                 <View style={{
                     flex: 1,
-                    aspectRatio: 1, resizeMode: 'contain', left: 50
+                    aspectRatio: 1, alignItems: 'center', bottom: 320, left: 10
                 }}>
                     <Image source={require("../../assets/Logo2.png")} style={{}} />
                 </View >
@@ -56,4 +56,5 @@ export default function Register() {
     );
 
 }
+
 

@@ -7,9 +7,8 @@ import Pay from './Pay'
 const Stack = createStackNavigator();
 const Payment = () => {
    return (
-      <Stack.Navigator initialRouteName="Cart" screenOptions={{ headerShown: false }}>
-
-         <Stack.Screen name="Cart" component={Cart} />
+      <Stack.Navigator initialRouteName="Bucket" screenOptions={{ headerShown: false }}>
+         <Stack.Screen name="Bucket" component={Cart} />
          <Stack.Screen name="Pay" component={Pay} />
       </Stack.Navigator>
    );

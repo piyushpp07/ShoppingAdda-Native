@@ -34,15 +34,14 @@ export default function Cart() {
                 {dataCart && dataCart.map((item, i) => (
                     <View key={i} style={{ flexDirection: 'row', backgroundColor: '#fff', marginBottom: 2, height: 120 }}>
 
-                        <View style={{ flexDirection: 'row', flexGrow: 1, flexShrink: 1, alignSelf: 'center' }}>
+                        <View style={{ flexDirection: 'row', flexGrow: 1, flexShrink: 1, alignSelf: 'center', borderRadius: 20 }}>
                             <TouchableOpacity onPress={() => {/*this.props.navigation.navigate('ProductDetails', {productDetails: item})*/ }} style={{ paddingRight: 10 }}>
-                                <Image source={item.image} style={[styles.centerElement, { height: 60, width: 60, backgroundColor: '#eeeeee' }]} />
+                                <Image source={item.image} style={[styles.centerElement, { height: 60, width: 60, backgroundColor: '#eeeeee', borderRadius: 6 }]} />
                             </TouchableOpacity>
                             <View style={{ flexGrow: 1, flexShrink: 1, alignSelf: 'center' }}>
                                 <Text numberOfLines={1} style={{ fontSize: 15 }}>{item.productName}</Text>
                                 <Text numberOfLines={1} style={{ color: '#8f8f8f' }}>{'Description : ' + item.desc}</Text>
                                 <Text numberOfLines={1} style={{ color: '#333333', marginBottom: 10 }}>₹{item.price}</Text>
-
                             </View>
 
                         </View>
@@ -54,12 +53,9 @@ export default function Cart() {
                     </View>
                 ))}
             </ScrollView>
-
-
-
-            <View style={{ backgroundColor: '#fff', borderTopWidth: 2, borderColor: '#f6f6f6', paddingVertical: 5 }}>
+            <View style={{ backgroundColor: '#fff', borderTopWidth: 2, borderColor: '#f6f6f6', paddingVertical: 1 }}>
                 <View style={{ flexDirection: 'row' }}>
-                    <View style={[styles.centerElement, { width: 60 }]}>
+                    <View style={[styles.centerElement, { width: 60, top: 50 }]}>
                         <View style={[styles.centerElement, { width: 32, height: 32 }]}>
                             <MaterialCommunityIcons name="ticket" size={25} color="#f0ac12" />
                         </View>
@@ -67,7 +63,7 @@ export default function Cart() {
 
                 </View>
                 <View style={{ flexDirection: 'row' }}>
-                    <View style={{ flexDirection: 'row', paddingRight: 20, alignItems: 'center' }}>
+                    <View style={{ flexDirection: 'row', paddingRight: 30, alignItems: 'center' }}>
                         <Text style={{ color: '#8f8f8f' }}>SubTotal: </Text>
                         <Text>₹  {cartTotal}</Text>
                     </View>
@@ -77,9 +73,9 @@ export default function Cart() {
                         <Text style={{ color: '#ffffff' }} onPress={() => { navigation.navigate('Pay') }}>Checkout</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </View >
 
-        </View>
+        </View >
     );
 
 }

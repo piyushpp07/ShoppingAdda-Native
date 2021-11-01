@@ -1,8 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
-import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
+import { View, Text, StyleSheet, TextInput, Button, Alert, KeyboardAvoidingView } from "react-native";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
 import { StripeProvider } from "@stripe/stripe-react-native";
 import axios from "axios";
+import { db } from "../../Firebase";
 import { useStripe } from "@stripe/stripe-react-native";
 import { StateContext } from '../Context/StateProvider';
 //ADD localhost address of your server
@@ -18,6 +19,8 @@ const Pay = (props) => {
   const [address, setAddress] = useState();
   const [user, setUser] = userdata;
   const ide = user;
+  const [house, setHouse] = useState("")
+  const [pincode, setPincode] = useState("")
   const { confirmPayment, loading } = useConfirmPayment();
   const { initPaymentSheet, presentPaymentSheet } = useStripe()
   const [clientSecret, setClientSecret] = useState()
@@ -66,7 +69,10 @@ const Pay = (props) => {
         Alert.alert(" x Payment Failed", "Your Payment Has been Failed", error.message)
       }
       else {
-        Alert.alert("Successfull !!!!", " ✔  Your Order Has been Successfully Placed")
+        addtoOrder();
+        deleteCart();
+        Alert.alert("Successfull !!!!", " ✔  Your Order Has been Successfully Placed");
+
       }
     }
     catch (error) {
@@ -74,18 +80,38 @@ const Pay = (props) => {
 
     }
   }
+  const addtoOrder = () => {
+    dataCart.map((item) => {
+      db.collection("users").doc(user).collection("order").add({
+        price: item.price,
+        productName: item.productName,
+        desc: item.productName,
+        image: item.image,
+        house: house,
+        pincode: pincode
+      })
+    });
 
-
+  }
+  const deleteCart = () => {
+    dataCart.map((item) => {
+      db.collection("users").doc(user).collection("cart").doc(item.key).delete().then((res) => { console.log(res) })
+    })
+  }
 
   return (
     <StripeProvider publishableKey="pk_test_51JObFKSAm54TGSWjZQQVnpytQbBKaz7MqR7ewLtoeqZSsO9SZUl7n3ZZm3zEYV3sYmQnZaVbzZCttT3in6KJTxKS00lJalhL2a">
       <View style={styles.container}>
-        <Text style={{ fontSize: 60 }}>Checkout</Text>
-        <Text style={{ fontSize: 30, top: 10 }}> Total Bill </Text>
-        <Text style={{ fontSize: 20, top: 6 }}> Rs {cartTotal}</Text>
-        <Button title="Pay Using Card Now" onPress={() => { openPaymentSheet(); console.log("Hello") }} />
+        <KeyboardAvoidingView>
+          <Text style={{ fontSize: 35, bottom: 90 }}>Checkout</Text>
+          <Text style={{ fontSize: 20, bottom: 70 }}> Total Bill Rs {cartTotal} </Text>
+          <TextInput placeholder="Enter Your House and street" style={{ bottom: 60, width: 180 }} autoComplete="postal-address"
+            value={house} onChangeText={(house) => { setHouse(house) }} />
+          <TextInput placeholder="Pincode" style={{ bottom: 40, width: 200 }} value={pincode} onChangeText={(pincode) => { setPincode(pincode) }} />
+          <Button title="Pay Now" onPress={() => { openPaymentSheet(); }} style={{ top: 30 }} />
+        </KeyboardAvoidingView>
       </View>
-    </StripeProvider>
+    </StripeProvider >
   );
 };
 export default Pay;
@@ -95,7 +121,10 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 20,
     padding: 30,
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    backgroundColor: 'white',
+    height: '100%'
   },
   input: {
     backgroundColor: "#efefefef",
