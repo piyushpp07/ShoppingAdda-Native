@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 //4000002500003155 success
 //4000000000009995 INsufficient
-app.get('/', (req, res) => { res.send("Hl") })
+app.get('/', (req, res) => { res.send("Hello Paymeny Server is Running") })
 
 app.post('/payment', async (req, res) => {
    const {
