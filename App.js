@@ -109,25 +109,8 @@ class App extends React.Component {
                       type="material"
                       size={24}
                       style={{ right: 10 }}
-
-                    />
-
-
-                  ),
-
-                  headerLeft: () => (
-                    <Ionicons
-
-                      onPress={() => Alert.alert("Under Construction")}
-                      name="ios-menu"
-                      type="material"
-                      size={28}
-                      style={{ left: 7, top: 1 }}
-
                     />
                   ),
-
-
                   headerMode: 'screen'
                 })}
               />

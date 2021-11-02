@@ -31,7 +31,7 @@ const Pay = (props) => {
 
   const initializePayment = async () => {
     try {
-      const response = await fetch('http://192.168.29.241:3000/payment', {
+      const response = await fetch('https://zj80w.sse.codesandbox.io/payment', {
         method: 'POST',
         headers: {
           "Content-type": "application/json"
@@ -101,14 +101,14 @@ const Pay = (props) => {
 
   return (
     <StripeProvider publishableKey="pk_test_51JObFKSAm54TGSWjZQQVnpytQbBKaz7MqR7ewLtoeqZSsO9SZUl7n3ZZm3zEYV3sYmQnZaVbzZCttT3in6KJTxKS00lJalhL2a">
-      <View style={styles.container}>
-        <KeyboardAvoidingView>
-          <Text style={{ fontSize: 35, bottom: 90 }}>Checkout</Text>
-          <Text style={{ fontSize: 20, bottom: 70 }}> Total Bill Rs {cartTotal} </Text>
-          <TextInput placeholder="Enter Your House and street" style={{ bottom: 60, width: 180 }} autoComplete="postal-address"
+      <View style={{ flex: 1 }}>
+        <KeyboardAvoidingView style={styles.container}>
+          <Text style={{ fontSize: 35, bottom: 20, color: 'blue' }}>Checkout</Text>
+          <Text style={{ fontSize: 20, bottom: 50 }}> Total Bill Rs {cartTotal} </Text>
+          <TextInput placeholder="Enter Your House and street" style={{ bottom: 60, width: 230, backgroundColor: '#EFEFEF', borderRadius: 8, alignSelf: 'center', height: 30 }} autoComplete="postal-address"
             value={house} onChangeText={(house) => { setHouse(house) }} />
-          <TextInput placeholder="Pincode" style={{ bottom: 40, width: 200 }} value={pincode} onChangeText={(pincode) => { setPincode(pincode) }} />
-          <Button title="Pay Now" onPress={() => { openPaymentSheet(); }} style={{ top: 30 }} />
+          <TextInput placeholder="Pincode" style={{ bottom: 60, width: 230, backgroundColor: '#EFEFEF', borderRadius: 8, alignSelf: 'center', height: 30 }} value={pincode} onChangeText={(pincode) => { setPincode(pincode) }} />
+          <Button title="Pay Now" onPress={() => { openPaymentSheet(); }} style={{ top: 30, borderRadius: 15 }} />
         </KeyboardAvoidingView>
       </View>
     </StripeProvider >
@@ -124,7 +124,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly',
     backgroundColor: 'white',
-    height: '100%'
+    height: '100%',
+    borderRadius: 15
   },
   input: {
     backgroundColor: "#efefefef",

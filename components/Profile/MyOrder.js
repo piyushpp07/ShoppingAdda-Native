@@ -5,7 +5,7 @@ import { MaterialIcons, AntDesign, Ionicons, MaterialCommunityIcons } from '@exp
 
 const MyOrder = () => {
     const { dataO } = useContext(StateContext);
-    const [dataOrder, setDataOrder] = dataO;
+    const [dataOrder] = dataO;
     return (
         <View style={{ flex: 1, backgroundColor: '#f6f6f6' }}>
             <View style={{ flexDirection: 'row', backgroundColor: '#fff', top: 4 }}>
