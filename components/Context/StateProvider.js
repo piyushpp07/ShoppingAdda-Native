@@ -18,7 +18,7 @@ export const StateProvider = (props) => {
    const [second, setSecond] = useState([]);
    const [first, setFirst] = useState([]);
    const [orderTotal, setOrderTotal] = useState()
-
+   const [add, setAdd] = useState([])
    useEffect(() => {
       auth.onAuthStateChanged(usr => {
          if (usr != null)
@@ -132,6 +132,13 @@ export const StateProvider = (props) => {
             });
             setFirst(getFirstDataFromFirebase);
          });
+         const getAddress = [];
+         db.collection('users').doc(user).collection('shipping').onSnapshot((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+               getAddress.push({ ...doc.data(), key: doc.id });
+            });
+            setAdd(getAddress);
+         });
       }
 
 
@@ -156,7 +163,8 @@ export const StateProvider = (props) => {
             firs: [first, setFirst],
             wo2: [dataWomens2, setDataWomens2],
             dataO: [dataOrder, setDataOrder],
-            ot: [orderTotal, setOrderTotal]
+            ot: [orderTotal, setOrderTotal],
+            addr: [add, setAdd],
          }
          }
       >

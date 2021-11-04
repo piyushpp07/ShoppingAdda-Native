@@ -19,7 +19,6 @@ const Pay = (props) => {
   const [address, setAddress] = useState();
   const [user, setUser] = userdata;
   const ide = user;
-  const [house, setHouse] = useState("")
   const [pincode, setPincode] = useState("")
   const { confirmPayment, loading } = useConfirmPayment();
   const { initPaymentSheet, presentPaymentSheet } = useStripe()
@@ -31,7 +30,7 @@ const Pay = (props) => {
 
   const initializePayment = async () => {
     try {
-      const response = await fetch('https://zj80w.sse.codesandbox.io/payment', {
+      const response = await fetch('http://192.168.29.241:3000/payment', {
         method: 'POST',
         headers: {
           "Content-type": "application/json"
@@ -52,7 +51,6 @@ const Pay = (props) => {
       if (error) {
         Alert.alert("ERROR CODE")
       }
-
     }
     catch (error) {
       console.log(error.message)
@@ -71,6 +69,12 @@ const Pay = (props) => {
       else {
         addtoOrder();
         deleteCart();
+        db.collection('users').doc(ide).collection('shipping').add(
+          {
+            pincode,
+            address,
+          }
+        )
         Alert.alert("Successfull !!!!", " ✔  Your Order Has been Successfully Placed");
 
       }
@@ -87,8 +91,6 @@ const Pay = (props) => {
         productName: item.productName,
         desc: item.productName,
         image: item.image,
-        house: house,
-        pincode: pincode
       })
     });
 
@@ -101,16 +103,19 @@ const Pay = (props) => {
 
   return (
     <StripeProvider publishableKey="pk_test_51JObFKSAm54TGSWjZQQVnpytQbBKaz7MqR7ewLtoeqZSsO9SZUl7n3ZZm3zEYV3sYmQnZaVbzZCttT3in6KJTxKS00lJalhL2a">
-      <View style={{ flex: 1 }}>
-        <KeyboardAvoidingView style={styles.container}>
+      <KeyboardAvoidingView style={styles.container}>
+        <View style={{ justifyContent: 'space-between' }} >
           <Text style={{ fontSize: 35, bottom: 20, color: 'blue' }}>Checkout</Text>
-          <Text style={{ fontSize: 20, bottom: 50 }}> Total Bill Rs {cartTotal} </Text>
-          <TextInput placeholder="Enter Your House and street" style={{ bottom: 60, width: 230, backgroundColor: '#EFEFEF', borderRadius: 8, alignSelf: 'center', height: 30 }} autoComplete="postal-address"
-            value={house} onChangeText={(house) => { setHouse(house) }} />
-          <TextInput placeholder="Pincode" style={{ bottom: 60, width: 230, backgroundColor: '#EFEFEF', borderRadius: 8, alignSelf: 'center', height: 30 }} value={pincode} onChangeText={(pincode) => { setPincode(pincode) }} />
-          <Button title="Pay Now" onPress={() => { openPaymentSheet(); }} style={{ top: 30, borderRadius: 15 }} />
-        </KeyboardAvoidingView>
-      </View>
+          <Text style={{ fontSize: 20 }}> Total Bill Rs {cartTotal} </Text>
+          <Text> </Text>
+          <TextInput placeholder="Enter Your House and street" style={{ width: 260, backgroundColor: '#EFEFEF', borderRadius: 5, alignSelf: 'center', height: 30 }} autoComplete="postal-address"
+            value={address} onChangeText={(address) => { setAddress(address) }} />
+          <Text> </Text>
+          <TextInput placeholder="Pincode" style={{ width: 260, backgroundColor: '#EFEFEF', borderRadius: 5, alignSelf: 'center', height: 30 }} value={pincode} onChangeText={(pincode) => { setPincode(pincode) }} />
+          <Text> </Text>
+          <Button title="Pay Now" onPress={() => { openPaymentSheet(); }} style={{ borderRadius: 15 }} />
+        </View>
+      </KeyboardAvoidingView>
     </StripeProvider >
   );
 };
@@ -119,13 +124,13 @@ export default Pay;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 20,
-    padding: 30,
+    height: '80%',
+    padding: 50,
     alignItems: 'center',
-    justifyContent: 'space-evenly',
     backgroundColor: 'white',
-    height: '100%',
-    borderRadius: 15
+    borderRadius: 15,
+    justifyContent: 'space-around',
+
   },
   input: {
     backgroundColor: "#efefefef",

@@ -4,8 +4,9 @@ import { StateContext } from '../Context/StateProvider';
 import { MaterialIcons, AntDesign, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 const MyOrder = () => {
-    const { dataO } = useContext(StateContext);
+    const { dataO, addr } = useContext(StateContext);
     const [dataOrder] = dataO;
+    const [add] = addr
     return (
         <View style={{ flex: 1, backgroundColor: '#f6f6f6' }}>
             <View style={{ flexDirection: 'row', backgroundColor: '#fff', top: 4 }}>
@@ -22,8 +23,8 @@ const MyOrder = () => {
             <ScrollView>
                 {dataOrder && dataOrder.map((item, i) => (<>
                     {i === 0 ?
-                        (<View style={{ height: 40, width: 300 }}><Text style={{ fontSize: 15, fontWeight: 'bold' }}>Shipping Address : {item.house}</Text>
-                            <Text style={{ fontSize: 15, fontWeight: 'bold' }}>PinCode: {item.pincode}</Text></View>) :
+                        (<View style={{ height: 40, width: 300 }}><Text style={{ fontSize: 15, fontWeight: 'bold' }}>Shipping Address : {add[0].address}</Text>
+                            <Text style={{ fontSize: 15, fontWeight: 'bold' }}>PinCode: {add[0].pincode}</Text></View>) :
                         (<></>)}
                     <View key={i} style={{ flexDirection: 'row', backgroundColor: '#fff', marginBottom: 2, height: 120 }}>
                         <View style={{ flexDirection: 'row', flexGrow: 1, flexShrink: 1, alignSelf: 'center', borderRadius: 20 }}>
