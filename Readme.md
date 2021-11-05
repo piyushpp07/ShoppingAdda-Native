@@ -5,7 +5,7 @@ Powered By react native and Javascript.
 
 - Safe and Secure
 - Opensource
-  ![alt text for screen readers]( "Text to show on mouseover").
+
 
 ## Features
 
