@@ -12,7 +12,6 @@ const Shop = () => {
     return (
         <Tab.Navigator screenOptions={{
             headerShown: 'true'
-
         }}>
             <Tab.Screen name="Mens" component={Mens} />
             <Tab.Screen name="Womens" component={Womens} />

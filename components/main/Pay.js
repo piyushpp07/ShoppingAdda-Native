@@ -26,11 +26,11 @@ const Pay = (props) => {
 
   useEffect(() => {
     initializePayment()
-  }, [])
+  })
 
   const initializePayment = async () => {
     try {
-      const response = await fetch('http://192.168.29.241:3000/payment', {
+      const response = await fetch('https://shoppingaddamobile.herokuapp.com/payment', {
         method: 'POST',
         headers: {
           "Content-type": "application/json"
@@ -67,23 +67,24 @@ const Pay = (props) => {
         Alert.alert(" x Payment Failed", "Your Payment Has been Failed", error.message)
       }
       else {
-        addtoOrder();
-        deleteCart();
         db.collection('users').doc(ide).collection('shipping').add(
           {
             pincode,
             address,
           }
         )
+        setAddress();
+        setPincode();
+        addtoOrder();
+        deleteCart();
         Alert.alert("Successfull !!!!", " ✔  Your Order Has been Successfully Placed");
-
       }
     }
     catch (error) {
       console.log(error)
-
     }
   }
+
   const addtoOrder = () => {
     dataCart.map((item) => {
       db.collection("users").doc(user).collection("order").add({
@@ -93,8 +94,8 @@ const Pay = (props) => {
         image: item.image,
       })
     });
-
   }
+
   const deleteCart = () => {
     dataCart.map((item) => {
       db.collection("users").doc(user).collection("cart").doc(item.key).delete().then((res) => { console.log(res) })

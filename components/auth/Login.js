@@ -28,15 +28,15 @@ export default class Login extends React.Component {
 
     render() {
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: "center", backgroundColor: "#EEEEEE" }}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: "center", backgroundColor: "#EFEEEE" }}>
                 <KeyboardAvoidingView style={{ flex: 1, height: '70%', width: '90%', top: '2%' }}>
                     <ScrollView>
                         <View style={{
                             backgroundColor: "#FFF",
-                            elevation: 10, borderRadius: 10, padding: 13
+                            elevation: 10, padding: 13
                         }}>
                             <View style={{
-                                aspectRatio: 1, resizeMode: 'contain', padding: 2, alignItems: 'center', bottom: '60%'
+                                aspectRatio: 1, resizeMode: 'contain', padding: 2, alignItems: 'center', bottom: '0%'
                             }}>
                                 <Image source={require("../../assets/Logo2.png")} />
                             </View >

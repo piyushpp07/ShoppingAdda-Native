@@ -20,15 +20,15 @@ export default function Register() {
     }
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: "center", backgroundColor: "#EEEEEE" }}>
-            <KeyboardAvoidingView style={{ flex: 1, height: '70%', width: '90%', top: '2%' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: "center", }}>
+            <KeyboardAvoidingView style={{ flex: 1, height: '70%', width: '90%', top: '2%', borderColor: 'black' }}>
                 <ScrollView showsHorizontalScrollIndicator={false}>
                     <View style={{
                         backgroundColor: "#FFF",
-                        elevation: 10, borderRadius: 10, padding: 13
+                        elevation: 10, padding: 13
                     }}>
                         <View style={{
-                            aspectRatio: 1, resizeMode: 'contain', padding: 2, alignItems: 'center', bottom: '60%'
+                            aspectRatio: 1, resizeMode: 'contain', padding: 2, alignItems: 'center'
                         }}>
                             <Image source={require("../../assets/Logo2.png")} />
                         </View >

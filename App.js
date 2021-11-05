@@ -76,7 +76,7 @@ class App extends React.Component {
           <Stack.Navigator initialRouteName="Landing" screenOptions={{
             headerMode: 'screen',
             headerTintColor: 'white',
-            headerStyle: { backgroundColor: '#B5DEFF' },
+            headerStyle: { backgroundColor: '#F04E72' },
             headerBlurEffect: "dark",
             animation: "flip",
             presentation: "fullScreenModal"
