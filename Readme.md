@@ -23,7 +23,7 @@ Technologies used in the project are as follows:
 - ReactNative Expo cli - Build cross platform app using the power of javascript!
 - VSCode - Awesome source-code editor
 - node.js - evented I/O for the backend
-- Express - fast node.js network app framework [@tjholowaychuk]
+- Express - fast node.js network app framework 
 - firebase - BAAS
 - Stripe - Payment Integration API
 - React-native-chatbot - A simple working chatbot
