@@ -6,6 +6,7 @@ Powered By react native and Javascript.
 - Safe and Secure
 - Opensource
 
+<img src="https://github.com/piyushpp07/ShoppingAdda-Native/blob/main/Screenshots/Shopping%20adda/Screenshot_2021-11-05-19-27-23-96.jpg" />
 
 ## Features
 
